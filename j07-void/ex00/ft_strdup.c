@@ -6,15 +6,23 @@
 /*   By: apogorze <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/16 14:40:30 by apogorze          #+#    #+#             */
-/*   Updated: 2018/07/16 16:05:40 by apogorze         ###   ########.fr       */
+/*   Updated: 2018/07/22 01:20:45 by clement          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
-#define LENGTH 6
 
-char	ft_strcpy(char *dest, char *src)
+int		ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return(i);
+}
+
+char	*ft_strcpy(char *dest, char *src)
 {
 	int i;
 
@@ -25,26 +33,16 @@ char	ft_strcpy(char *dest, char *src)
 		i++;
 	}
 	dest[i] = '\0';
-	return (*dest);
+	return (dest);
 }
 
 char	*ft_strdup(char *src)
 {
 	char *dest;
 
-	dest = (char*)malloc(sizeof(*src) * (LENGTH + 1));
+	dest = (char*)malloc(sizeof(*src) * (ft_strlen(src) + 1));
+	if (dest == NULL)
+		return (NULL);
 	ft_strcpy(dest, src);
 	return (dest);
-}
-
-int		main(void)
-{
-	char *src;
-	char *dest;
-
-	src = (char*)malloc(sizeof(*src) * (LENGTH + 1));
-	src = "abcdef";
-	dest = ft_strdup(src);
-	printf("%s", dest);
-	return (0);
 }
