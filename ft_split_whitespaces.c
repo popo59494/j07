@@ -6,7 +6,7 @@
 /*   By: apogorze <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 12:53:23 by apogorze          #+#    #+#             */
-/*   Updated: 2018/07/17 17:12:37 by apogorze         ###   ########.fr       */
+/*   Updated: 2018/07/22 02:38:41 by clement          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,30 +69,17 @@ char	**ft_split_whitespaces(char *str)
 	tableau = (char**)malloc(sizeof(char*) * (nw + 1));
 	while (str[i] != '\0')
 	{
-		while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\0')
+		while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
 			i++;
 		nl = ft_count_letters(&str[i]);
+		if (nl != 0)
+		{
 		tableau[j] = (char*)malloc(sizeof(char) * (nl + 1));
 		ft_wordcopy(tableau[j], &str[i], nl);
 		i = i + nl;
+		}
 		j++;
 	}
 	tableau[j] = NULL;
 	return (tableau);
-}
-
-int		main(void)
-{
-	char str[] = "  ncoewih  ifueh bifeu wg efuyg njerihf    fehg";
-	int i;
-	char **tableau;
-	
-	tableau = ft_split_whitespaces(str);
-	while (tableau[i] != NULL)
-	{
-		printf("%s\n", tableau[i]);
-		i++;
-	}
-	printf("%s", tableau[i]);
-	return(0);
 }
