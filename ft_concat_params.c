@@ -37,6 +37,7 @@ char	*ft_strcat(char *dest, char *src)
 		j++;
 	}
 	dest[i + j] = '\n';
+	dest[i + j + 1] = '\0';
 	return (dest);
 }
 
@@ -73,7 +74,7 @@ char	*ft_concat_params(int argc, char **argv)
 		length = length + ft_strlen(argv[i]);
 		i++;
 	}
-	str = (char*)malloc(sizeof(char) * (length) + (argc));
+	str = (char*)malloc(sizeof(char) * (length) + (argc - 1));
 	while (j < argc - 1)
 	{
 		str = ft_strcat(str, argv[j]);
@@ -81,6 +82,7 @@ char	*ft_concat_params(int argc, char **argv)
 	}
 	if (j == argc - 1)
 		str = ft_strcat_last(str, argv[j]);
+	printf("%c", str[length + argc - 1]);
 	return (str);
 }
 
